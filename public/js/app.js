@@ -38230,6 +38230,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /**
  * Created by aquispe on 04/11/2017.
@@ -38257,7 +38276,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('persona-pay-history-modal
             newPersona: {},
             newEmpresa: {},
             imageSrc: null,
-            id: null
+            id: null,
+            isPost: false
         };
     },
     beforeCreate: function beforeCreate() {},
@@ -38280,12 +38300,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('persona-pay-history-modal
 
     watch: {
         // Escuchar
-        //            $route() {
-        //                setTimeout(() => {this.loadingPage = !this.loadingPage;}, 1000);
-        //                this.isPost = !this.isPost;
-        //                this.newPersona = this.tempPersona;
-        //                this.loadingPage = !this.loadingPage;
-        //            }
+        $route: function $route() {
+            var _this2 = this;
+
+            setTimeout(function () {
+                _this2.loadingPage = !_this2.loadingPage;
+            }, 1000);
+            this.isPost = !this.isPost;
+            this.newPersona = this.tempPersona;
+            this.loadingPage = !this.loadingPage;
+        }
     },
     computed: {},
     methods: {
@@ -38295,7 +38319,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('persona-pay-history-modal
             this.newPersona.anio = this.moment(this.newPersona.fecha_nacimiento, __WEBPACK_IMPORTED_MODULE_1__services_PersonaService__["a" /* default */].state.util.formatDate).format("YYYY");
         },
         fnOpenCloseModal: function fnOpenCloseModal() {
-            var _this2 = this;
+            var _this3 = this;
 
             if (this.showModal) {
                 // Cerrar
@@ -38307,7 +38331,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('persona-pay-history-modal
                 document.getElementById('super-body').classList.add("modal-open");
                 this.showModal = true;
                 setTimeout(function () {
-                    _this2.loadModal = false;
+                    _this3.loadModal = false;
                 }, 1000);
             }
         }
@@ -38412,7 +38436,9 @@ var render = function() {
                                     _c("i", {
                                       staticClass: "fa fa-angle-left fa-fw"
                                     }),
-                                    _vm._v("volver")
+                                    _vm._v(
+                                      "volver\n                                        "
+                                    )
                                   ]
                                 )
                               ],
@@ -38447,11 +38473,15 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", { staticClass: "small" }, [
                                   _vm._v(
-                                    _vm._s(
-                                      _vm
-                                        .moment(_vm.newPersona.fecha_nacimiento)
-                                        .format("DD-MM-YYYY")
-                                    )
+                                    "\n                                                " +
+                                      _vm._s(
+                                        _vm
+                                          .moment(
+                                            _vm.newPersona.fecha_nacimiento
+                                          )
+                                          .format("DD-MM-YYYY")
+                                      ) +
+                                      "\n                                            "
                                   )
                                 ])
                               ])
@@ -38667,25 +38697,39 @@ var render = function() {
                                 _vm._v(" "),
                                 _vm.newPersona.estado_civil == "C"
                                   ? _c("div", { staticClass: "form-control" }, [
-                                      _vm._v("Casado")
+                                      _vm._v(
+                                        "Casado\n                                        "
+                                      )
                                     ])
                                   : _vm.newPersona.estado_civil == "V"
                                     ? _c(
                                         "div",
                                         { staticClass: "form-control" },
-                                        [_vm._v("Viudo")]
+                                        [
+                                          _vm._v(
+                                            "\n                                            Viudo\n                                        "
+                                          )
+                                        ]
                                       )
                                     : _vm.newPersona.estado_civil == "S"
                                       ? _c(
                                           "div",
                                           { staticClass: "form-control" },
-                                          [_vm._v("Soltero")]
+                                          [
+                                            _vm._v(
+                                              "\n                                            Soltero\n                                        "
+                                            )
+                                          ]
                                         )
                                       : _vm.newPersona.estado_civil == "D"
                                         ? _c(
                                             "div",
                                             { staticClass: "form-control" },
-                                            [_vm._v("Divorciado")]
+                                            [
+                                              _vm._v(
+                                                "\n                                            Divorciado\n                                        "
+                                              )
+                                            ]
                                           )
                                         : _vm._e()
                               ])
@@ -40866,7 +40910,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('cliente-list-modal', __WE
             selectedFechaSearch: null,
             selectedFechaSearch2: null,
             checkedPagoAgua: "",
-            descripcion: "",
             checkedModificarPrecio: false,
             checkedDescripcion: false,
             selectedFiltroEmpresa: "",
@@ -40885,22 +40928,27 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('cliente-list-modal', __WE
             validateEmpresaComprobante: false,
             clienteComprobante: [],
             validateClienteComprobante: false,
+            // HTTP
             params: {
                 id: null,
                 id_usuario: [],
                 id_actividad: null
             },
             // INVOICE
+            descripcion: "",
             precio_autosuma: "",
             items: [],
             item: {},
             subtotal: "0.00",
             igv: "0.00",
             total: "0.00",
+            //            data_comprobante: {
+            //                precio: "0.00",
+            //                subtotal: "0.00",
+            //                igv: "0.00",
+            //                total: "0.00",
+            //            },
             precio: "0.00",
-            data: {
-                precio: "0.00"
-            },
             folio: "-",
             checkedClienteSelected: false,
             checkedClientes: [],
@@ -41007,9 +41055,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('cliente-list-modal', __WE
         },
         fnPushItem: function fnPushItem(objeto) {
             this.items.push(objeto);
-            this.params.cliente.push(objeto.id);
+            this.params.id_usuario.push(objeto.id);
+
             this.total = parseFloat(parseFloat(this.total) + parseFloat(objeto.valor)).toFixed(2);
-            this.igv = parseFloat(parseFloat(this.total) * 0.018).toFixed(2);
+            this.igv = parseFloat(parseFloat(this.total) * 0.18).toFixed(2);
             this.subtotal = parseFloat(parseFloat(this.total) - parseFloat(this.igv)).toFixed(2);
             // Limpiar
             this.selectedActividad = "";
@@ -41018,13 +41067,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('cliente-list-modal', __WE
         },
         fnRemoveItem: function fnRemoveItem(objeto) {
             this.items.splice(objeto.index, 1);
-            this.total = parseFloat(parseFloat(this.total) - parseFloat(objeto.item.valor)).toFixed(2);
-            this.igv = parseFloat(parseFloat(this.total) * 0.018).toFixed(2);
+
+            this.total = parseFloat(parseFloat(this.total) - parseFloat(objeto.valor)).toFixed(2);
+            this.igv = parseFloat(parseFloat(this.total) * 0.18).toFixed(2);
             this.subtotal = parseFloat(parseFloat(this.total) - parseFloat(this.igv)).toFixed(2);
         },
         fnChangeActividad: function fnChangeActividad(objeto) {
-            this.data = objeto;
-            this.precio = objeto.valor;
+            console.log(objeto);
+            this.data_comprobante = objeto;
+            this.precio = this.data_comprobante.valor;
+
             // Limpiar
             this.checkedModificarPrecio = false;
             this.precio_autosuma = "";
@@ -43649,7 +43701,7 @@ var render = function() {
                               on: {
                                 click: function($event) {
                                   $event.preventDefault()
-                                  _vm.fnPushItem(_vm.data)
+                                  _vm.fnPushItem(_vm.data_comprobante)
                                 }
                               }
                             },
@@ -43748,7 +43800,7 @@ var render = function() {
                                   rows: "2"
                                 }
                               },
-                              [_vm._v(_vm._s(_vm.data.descripcion))]
+                              [_vm._v(_vm._s(_vm.descripcion))]
                             )
                           ])
                         ]

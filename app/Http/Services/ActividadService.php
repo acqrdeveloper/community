@@ -25,10 +25,11 @@ class ActividadService
 
             if (!empty($request)) {
 
-                if (!empty($request->estado))
+                if (!empty($request->estado)) {
                     $data = $data->where("estado", $request->estado);
+                }
 
-                if (!empty($request->filtro))
+                if (!empty($request->filtro)) {
                     switch ($request->filtro) {
                         case "nombre":
                             if (!empty($request->buscar))
@@ -45,11 +46,17 @@ class ActividadService
                                 $data = $data->where("dni", "like", "%" . $request->buscar . "%");
                             break;
                     }
+                }
+
             }
 
-            if (isset($options["isPaginate"])) $data = $data->paginate($options["page"]); else $data = $data->get();
+            if (isset($options["isPaginate"])){
+                $data = $data->paginate($options["page"]);
+            } else {
+                $data = $data->get();
+            }
 
-            $this->fnSuccess($request->all());
+            $this->fnSuccess($data);
 
         } catch (Exception $e) {
             $this->fnErrorException($e);

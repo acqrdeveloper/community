@@ -173,7 +173,7 @@
                                 <div class="form-group">
                                     <label class="control-label">.</label>
                                     <p class="control-label">.</p>
-                                    <button :disabled="selectedActividad != '' ? false : true" @click.prevent="fnPushItem(data)" type="button" class="btn btn-warning btn-block"><i class="fa fa-plus fa-fw"></i>Agregar Item
+                                    <button :disabled="selectedActividad != '' ? false : true" @click.prevent="fnPushItem(data_comprobante)" type="button" class="btn btn-warning btn-block"><i class="fa fa-plus fa-fw"></i>Agregar Item
                                     </button>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@
                                     <label title="modificar concepto de actividad" class="control-label">
                                         <input v-model="checkedDescripcion" type="checkbox" class="fa fa-fw"/>Concepto o Descripción</label>
                                     <p>Descripción de pago.</p>
-                                    <textarea :disabled="checkedDescripcion ? false : true" rows="2" class="form-control">{{data.descripcion}}</textarea>
+                                    <textarea :disabled="checkedDescripcion ? false : true" rows="2" class="form-control">{{descripcion}}</textarea>
                                 </div>
                             </div>
                             <div v-show="checkedModificarPrecio" class="col-md-12">
@@ -295,7 +295,7 @@
                             <option value="nombre_empresa">nombre empresa</option>
                             <option value="ruc">ruc</option>
                         </select>
-                        <input v-show="selectedFiltroEmpresa != '' " v-model="buscarEmpresa" type="text" class="form-control w-30" :placeholder="'Buscar por '+selectedFiltroEmpresa"/>
+                        <input v-show="selectedFiltroEmpresa != '' " v-model="buscarEmpresa" type="text" class="form-control w-30" :placeholder="'Buscar por ' + selectedFiltroEmpresa"/>
                     </div>
                 </div>
                 <div v-if="loadModal" class="modal-body">
@@ -345,7 +345,7 @@
                             <option value="dni">dni</option>
                             <option value="nombre_apellido">nombre y apellido</option>
                         </select>
-                        <input v-model="buscarCliente" type="text" class="form-control w-30" :placeholder="'Buscar por '+selectedFiltroCliente"/>
+                        <input v-model="buscarCliente" type="text" class="form-control w-30" :placeholder="'Buscar por ' + selectedFiltroCliente"/>
                     </div>
                 </div>
                 <div v-if="loadModal2" class="modal-body">
@@ -426,7 +426,6 @@
             selectedFechaSearch: null,
             selectedFechaSearch2: null,
             checkedPagoAgua: "",
-            descripcion: "",
             checkedModificarPrecio: false,
             checkedDescripcion: false,
             selectedFiltroEmpresa: "",
@@ -445,22 +444,21 @@
             validateEmpresaComprobante: false,
             clienteComprobante: [],
             validateClienteComprobante: false,
+            // HTTP
             params: {
                 id: null,
                 id_usuario: [],
                 id_actividad: null,
             },
             // INVOICE
+            descripcion: "",
             precio_autosuma: "",
             items: [],
             item: {},
             subtotal: "0.00",
             igv: "0.00",
             total: "0.00",
-            precio: "0.00",
-            data: {
-                precio: "0.00",
-            },
+            precio:"0.00",
             folio: "-",
             checkedClienteSelected: false,
             checkedClientes: [],
@@ -554,9 +552,10 @@
             },
             fnPushItem(objeto) {
                 this.items.push(objeto);
-                this.params.cliente.push(objeto.id);
+                this.params.id_usuario.push(objeto.id);
+
                 this.total = parseFloat(parseFloat(this.total) + parseFloat(objeto.valor)).toFixed(2);
-                this.igv = parseFloat(parseFloat(this.total) * 0.018).toFixed(2);
+                this.igv = parseFloat(parseFloat(this.total) * 0.18).toFixed(2);
                 this.subtotal = parseFloat(parseFloat(this.total) - parseFloat(this.igv)).toFixed(2);
                 // Limpiar
                 this.selectedActividad = "";
@@ -565,13 +564,17 @@
             },
             fnRemoveItem(objeto) {
                 this.items.splice(objeto.index, 1);
-                this.total = parseFloat(parseFloat(this.total) - parseFloat(objeto.item.valor)).toFixed(2);
-                this.igv = parseFloat(parseFloat(this.total) * 0.018).toFixed(2);
+
+                this.total = parseFloat(parseFloat(this.total) - parseFloat(objeto.valor)).toFixed(2);
+                this.igv = parseFloat(parseFloat(this.total) * 0.18).toFixed(2);
                 this.subtotal = parseFloat(parseFloat(this.total) - parseFloat(this.igv)).toFixed(2);
             },
             fnChangeActividad(objeto) {
-                this.data = objeto;
-                this.precio = objeto.valor;
+                console.log(objeto);
+                this.data_comprobante = objeto;
+                this.precio = this.data_comprobante.valor;
+
+
                 // Limpiar
                 this.checkedModificarPrecio = false;
                 this.precio_autosuma = "";
