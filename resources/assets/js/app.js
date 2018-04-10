@@ -5,16 +5,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from './components/Home.vue';
-// PERSONA
 import PersonaList from './components/PersonaList.vue';
 import PersonaCreate from './components/PersonaCreateUpdate.vue';
 import PersonaEdit from './components/PersonaCreateUpdate.vue';
 import PersonaDetail from './components/PersonaDetail.vue';
-// TABLAS MANTENIMIENTO
 import TablasList from './components/TablasList.vue';
-// COMPROBANTE
 import ComprobanteCreateUpdate from './components/ComprobanteCreateUpdate.vue'
-// EMPRESA
 import EmpresaCreate from './components/EmpresaCreateUpdate.vue';
 
 Vue.use(VueRouter);

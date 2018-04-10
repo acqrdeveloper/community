@@ -20,7 +20,9 @@
  * view-change-tipo
  */
 
+
 /*
+ *
  ** NOMBRES CONTROLADORES **
  * get-list
  * store
@@ -32,7 +34,7 @@
 Route::group(['middleware' => ['auth', 'web']], function () {
 
     // HOME
-    Route::get('/', function (){
+    Route::get('/', function () {
         return redirect()->to("/home");
     });
     Route::get('/home', 'Controller@viewVue');
@@ -57,16 +59,15 @@ Route::group(['middleware' => ['auth', 'web']], function () {
     Route::get('/persona-filter', 'PersonaController@filter');
 
     // COMPROBANTE PAGO
-    Route::get('/comprobantes','Controller@viewVue');
+    Route::get('/comprobantes', 'Controller@viewVue');
     Route::get('/comprobante-create', 'Controller@viewVue');
-    Route::get('/comprobante-all','ComprobanteController@all');
-    Route::post('/comprobante-store','ComprobanteController@store');
-    Route::put('/comprobante-update/{id}','ComprobanteController@update');
+    Route::get('/comprobante-all', 'ComprobanteController@all');
+    Route::post('/comprobante-store', 'ComprobanteController@store');
+    Route::put('/comprobante-update/{id}', 'ComprobanteController@update');
 //    Route::post('/comprobante-edit','ComprobanteController@edit');
 //    Route::post('/comprobante-pay','ComprobanteController@pay');
 //    Route::post('/comprobantes-by-usuario','ComprobanteController@allByUsuario');
 //    Route::post('/comprobante-change-status','ComprobanteController@changeStatus');
-
 
 
     // ACTIVIDAD
@@ -95,6 +96,3 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('post/login', 'Auth\LoginController@fnDoLogin');
 
 });
-
-
-

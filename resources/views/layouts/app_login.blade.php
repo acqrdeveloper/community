@@ -7,12 +7,12 @@
     <title>app | Sign In</title>
 
     <!-- Bootstrap core Vue and Bootstrap-sass-->
-    {{--<link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
-    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">--}}
     <!-- Core Styles-->
-    <link rel="stylesheet" href="{{ asset('node_modules/metisMenu/dist/metisMenu.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sb-admin-2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('node_modules/metisMenu/dist/metisMenu.min.css') }}">--}}
+    {{--<link rel="stylesheet" href="{{ asset('css/sb-admin-2.min.css') }}">--}}
+    {{--<link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">--}}
     <style>
         button, a {
             outline: 0 !important;
@@ -40,7 +40,7 @@
 {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 <!-- Core Scripts-->
 <script src="{{ asset('node_modules/metisMenu/dist/metisMenu.min.js') }}"></script>
-<script src="{{ asset('js/sb-admin-2.js') }}"></script>
+{{--<script src="{{ asset('js/sb-admin-2.js') }}"></script>--}}
 
 </body>
 </html>
